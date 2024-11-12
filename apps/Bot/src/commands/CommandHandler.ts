@@ -1,7 +1,9 @@
-import { APIApplicationCommand, ApplicationCommand, CommandInteraction, RESTPostAPIApplicationCommandsJSONBody, Routes } from 'discord.js'
+import { APIApplicationCommand, CommandInteraction, RESTPostAPIChatInputApplicationCommandsJSONBody, Routes } from 'discord.js'
 import { Command } from './Command'
 import { Bot } from '../Bot'
 import { commandMatches } from './compareCommands'
+
+export type CommandData = RESTPostAPIChatInputApplicationCommandsJSONBody
 
 export class CommandHandler {
 	private commands = new Array<Command>()
@@ -46,9 +48,8 @@ export class CommandHandler {
 
 			commandsToRemove = commandsToRemove.filter(it => it.id != cmd.id)
 
-			const json = command.builderData.toJSON()
-			if (!commandMatches(json, cmd)) {
-				promises.push(this.updateCommand(cmd.id, command, json, devGuild))
+			if (!commandMatches(command.builderData, cmd)) {
+				promises.push(this.updateCommand(cmd.id, command, command.builderData, devGuild))
 				continue
 			}
 
@@ -68,12 +69,12 @@ export class CommandHandler {
 
 	private async registerCommand(command: Command, devGuild: string | null = null) {
 		const route = devGuild == null ? Routes.applicationCommands(this.clientId) : Routes.applicationGuildCommands(this.clientId, devGuild)
-		const d = await this.rest.post(route, { body: command.builderData.toJSON() }) as APIApplicationCommand
+		const d = await this.rest.post(route, { body: command.builderData }) as APIApplicationCommand
 		command.data = d;
 		console.log("Registered command", command.builderData.name)
 	}
 
-	private async updateCommand(id: string, command: Command, body: RESTPostAPIApplicationCommandsJSONBody, devGuild: string | null) {
+	private async updateCommand(id: string, command: Command, body: CommandData, devGuild: string | null) {
 		const route = devGuild == null ? Routes.applicationCommand(this.clientId, id) : Routes.applicationGuildCommand(this.clientId, devGuild, id)
 		const d = await this.rest.patch(route, { body: body }) as APIApplicationCommand
 		command.data = d;

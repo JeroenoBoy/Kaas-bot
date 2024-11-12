@@ -1,9 +1,12 @@
 import { loadEnvFile } from 'process';
 import { Bot } from './Bot';
 import { config } from './config';
-import { HelloModule } from './modules/helloModule';
+import { HelloModule } from './modules/hello';
+import { PrismaClient } from '@repo/db';
 
 async function main() {
+
+	const prisma = new PrismaClient()
 	
 	const bot = new Bot(config.CLIENT_ID, config.BOT_TOKEN);
 

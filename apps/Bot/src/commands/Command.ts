@@ -1,13 +1,14 @@
 import { APIApplication, APIApplicationCommand, ApplicationCommandData, CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Bot } from '../Bot';
 import { Module } from '../Module';
+import { CommandData } from './CommandHandler';
 
 export abstract class Command {
 	//@ts-ignore
 	module: Module = null
 	//@ts-ignore
 	data: APIApplicationCommand
-	builderData: SlashCommandBuilder
+	builderData: CommandData
 
 	public get bot() {
 		return this.module.bot
@@ -22,10 +23,10 @@ export abstract class Command {
 		this.applyDefaults(this.builderData)
 	}
 
-	protected abstract commandData(): SlashCommandBuilder
+	protected abstract commandData(): CommandData
 	public abstract execute(interaction: CommandInteraction): any
 
-	private applyDefaults(builder: SlashCommandBuilder) {
+	private applyDefaults(builder: CommandData) {
 		function setIfUndefined<V, T extends keyof V>(data: V, property: T, value: V[T] | null) {
 			if (data[property] == undefined) {
 				// @ts-ignore

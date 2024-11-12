@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mariadb
+    restart: on-failure
+    environment:
+      - MARIADB_DATABASE=kaas
+      - MARIADB_USER=kaas
+      - MARIADB_PASSWORD=123
+      - MARIADB_ROOT_PASSWORD=123
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: on-failure
+    ports:
+      - 8080:8080

@@ -1,6 +1,5 @@
-import { loadEnvFile } from 'process';
-
-loadEnvFile()
+import dotenv from "dotenv"
+dotenv.config()
 
 export const config = {
 	CLIENT_ID: process.env.BOT_CLIENT_ID ?? Throw<string>(new Error("BOT_CLIENT_ID was not defined")),
