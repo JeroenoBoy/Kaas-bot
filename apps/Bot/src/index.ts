@@ -3,6 +3,7 @@ import { Bot } from './Bot';
 import { config } from './config';
 import { HelloModule } from './modules/hello';
 import { PrismaClient } from '@repo/db';
+import { BirthdayModule } from './modules/birthday';
 
 async function main() {
 
@@ -15,6 +16,7 @@ async function main() {
 	}
 
 	bot.addModule(new HelloModule())
+	bot.addModule(new BirthdayModule())
 	await bot.init()
 	await bot.commandHandler.updateCommands(config.DEV_GUILD)
 
