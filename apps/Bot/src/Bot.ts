@@ -1,10 +1,13 @@
+import { Command } from './commands/Command';
+import { CommandHandler } from './commands/CommandHandler';
 import { Module } from './Module';
-import { ApplicationCommand, Client, IntentsBitField, REST, Routes } from "discord.js";
+import { ApplicationCommand, Client, IntentsBitField, Interaction, REST, Routes, SlashCommandBuilder } from "discord.js";
 
 export class Bot {
 
 	readonly clientId: string;
 	readonly client: Client<true>;
+	readonly commandHandler: CommandHandler
 	get rest(): REST { return this.client.rest }
 
 	private readonly token: string;
@@ -18,6 +21,8 @@ export class Bot {
 			intents: []
 		});
 		this.client.rest.setToken(token)
+		this.commandHandler = new CommandHandler(this)
+		this.client.on("interactionCreate", i => this.handleInteraction(i))
 	}
 	
 	public addModule(module: Module) {
@@ -36,23 +41,19 @@ export class Bot {
 		this.isInitialized = true;
 	}
 
-	public async manageCommands(devGuild: string | null = null) {
-		const commmands = this.modules.flatMap(it => it.commands)
-
-		const applicationCommands = await this.rest.get(Routes.applicationCommands(this.clientId)) as ApplicationCommand[]
-
-		for (const command in commmands) {
-			const cmd = applicationCommands.find(it => it.name == command)
-		}
-	}
-
 	public async start() {
-		if (this.isInitialized) { throw new Error("Please initialize the client before starting the bot") }
+		if (!this.isInitialized) { throw new Error("Please initialize the client before starting the bot") }
 
 		await this.client.login(this.token)
 
 		const promises = new Array<Promise<void>>()
 		this.modules.forEach(it => promises.push(it.ready() as any))
 		await Promise.all(promises)
+	}
+
+	private handleInteraction(interaction: Interaction) {
+		if (interaction.isCommand()) {
+			this.commandHandler.handleCommand(interaction)
+		}
 	}
 }

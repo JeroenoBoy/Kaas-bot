@@ -1,16 +1,17 @@
 import { Bot } from './Bot';
-import { Command } from './Command';
+import { Command } from './commands/Command';
 
 export abstract class Module {
-	bot: Bot
-	readonly commands = new Array<Command>()
+	//@ts-ignore
+	bot: Bot = null
 	
 	public get client() {
 		return this.bot.client
 	}
 
 	addCommand(command: Command) {
-		this.commands.push(command)
+		command.module = this;
+		this.bot.commandHandler.addCommand(command)
 	}
 
 	public abstract init(): Promise<void> | void
