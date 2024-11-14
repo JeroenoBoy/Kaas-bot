@@ -1,13 +1,16 @@
 {
-  "name": "Kaas-bot",
+  "name": "kaas-bot",
   "private": true,
   "scripts": {
-    "start": "turbo start",
-    "migrate": "turbo db:migrate",
-    "build": "turbo build",
-    "dev": "turbo dev",
+    "start": "dotenv turbo start",
+    "migrate": "dotenv turbo db:migrate",
+    "build": "dotenv turbo build",
+    "dev": "dotenv turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "dependencies": {
+    "dotenv-cli": "^7.4.2"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -17,10 +20,9 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "yarn@1.22.11",
+  "packageManager": "npm@9.8.1",
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {}
+  ]
 }

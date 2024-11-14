@@ -1,6 +1,6 @@
 import { APIApplicationCommand, ChatInputCommandInteraction } from 'discord.js';
-import { Module } from '../Module.js';
-import { CommandData } from './CommandHandler.js';
+import { Module } from '../Module';
+import { CommandData } from './CommandHandler';
 
 export abstract class Command {
 	//@ts-ignore

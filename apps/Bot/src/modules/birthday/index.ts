@@ -1,6 +1,6 @@
 import { PrismaClient } from '@repo/db';
-import { Module } from '../../Module.js';
-import { BirthdayCommand } from './commands/BirthdayCommand.js';
+import { Module } from '../../Module';
+import { BirthdayCommand } from './commands/BirthdayCommand';
 import schedule from 'node-schedule'
 import { TextChannel } from 'discord.js';
 

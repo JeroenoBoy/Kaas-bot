@@ -1,6 +1,6 @@
-import { CommandHandler } from './commands/CommandHandler.js';
-import { Module } from './Module.js';
-import { Client, Interaction, REST } from "discord.js";
+import { CommandHandler } from './commands/CommandHandler';
+import { Module } from './Module';
+import { Client, Interaction, REST } from 'discord.js';
 
 export class Bot {
 

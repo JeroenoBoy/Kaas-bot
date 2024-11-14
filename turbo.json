@@ -2,15 +2,17 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "tasks": {
-    "db:migrate": { "cache": false },
-    "db:generate": { "cache": false },
-    "db:push": { "cache": false },
+    "db:migrate": { "cache": false, "env": ["DATABASE_URL"] },
+    "db:generate": { "cache": false, "env": ["DATABASE_URL"] },
+    "db:push": { "cache": false, "env": ["DATABASE_URL"] },
     "start": { 
       "dependsOn": ["^start"],
+      "env": ["DATABASE_URL", "BOT_CLIENT_ID", "BOT_TOKEN"],
       "cache": false
     },
     "dev": {
-      "dependsOn": ["^db:migrate", "^dev"],
+      "dependsOn": ["^dev"],
+      "env": ["DATABASE_URL", "BOT_CLIENT_ID", "BOT_TOKEN"],
       "cache": false
     },
     "build": {
