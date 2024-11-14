@@ -24,7 +24,7 @@ export class BirthdayModule extends Module {
 	}
 
 	private async checkBirthdays() {
-		const birthdays = await this.db.birthday.findMany()
+		const birthdays = await this.db.birthday.findMany({orderBy: { date: "asc" }})
 		const date = new Date()
 		const now = new Date(date.getFullYear(), date.getMonth(), date.getDate())
 

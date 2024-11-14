@@ -88,7 +88,7 @@ export class BirthdayCommand extends Command {
 				break;
 			}
 			case "list": {
-				const birthdays = await this.db.birthday.findMany()
+				const birthdays = await this.db.birthday.findMany({ orderBy: { date: "asc" } })
 				await interaction.reply({ephemeral: true, content: "Kaasdagen: 🧀\n"+birthdays.map(it => `- <@${it.id}> is geboren op \`${this.formatDate(it.date)}\``).join("\n")})
 				break;
 			}
