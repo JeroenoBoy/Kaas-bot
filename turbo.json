@@ -6,7 +6,7 @@
     "db:generate": { "cache": false },
     "db:push": { "cache": false },
     "start": { 
-      "dependsOn": ["^db:push", "^start"],
+      "dependsOn": ["^start"],
       "cache": false
     },
     "dev": {
