@@ -12,12 +12,14 @@
   "dependencies": {
     "@repo/db": "*",
     "discord.js": "^14.16.3",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "node-schedule": "^2.1.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@types/node": "^22.9.0",
+    "@types/node-schedule": "^2.1.7",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2"
   }

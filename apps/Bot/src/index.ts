@@ -7,7 +7,9 @@ import { BirthdayModule } from './modules/birthday';
 
 async function main() {
 
-	const prisma = new PrismaClient()
+	const db = new PrismaClient()
+	await db.$connect()
+	console.log("Connected to db")
 	
 	const bot = new Bot(config.CLIENT_ID, config.BOT_TOKEN);
 
@@ -16,7 +18,7 @@ async function main() {
 	}
 
 	bot.addModule(new HelloModule())
-	bot.addModule(new BirthdayModule())
+	bot.addModule(new BirthdayModule(db))
 	await bot.init()
 	await bot.commandHandler.updateCommands(config.DEV_GUILD)
 

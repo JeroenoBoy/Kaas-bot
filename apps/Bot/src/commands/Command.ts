@@ -1,4 +1,4 @@
-import { APIApplication, APIApplicationCommand, ApplicationCommandData, CommandInteraction, SlashCommandBuilder } from 'discord.js';
+import { APIApplication, APIApplicationCommand, ChatInputCommandInteraction, CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Bot } from '../Bot';
 import { Module } from '../Module';
 import { CommandData } from './CommandHandler';
@@ -24,7 +24,7 @@ export abstract class Command {
 	}
 
 	protected abstract commandData(): CommandData
-	public abstract execute(interaction: CommandInteraction): any
+	public abstract execute(interaction: ChatInputCommandInteraction): any
 
 	private applyDefaults(builder: CommandData) {
 		function setIfUndefined<V, T extends keyof V>(data: V, property: T, value: V[T] | null) {

@@ -52,7 +52,7 @@ export class Bot {
 	}
 
 	private handleInteraction(interaction: Interaction) {
-		if (interaction.isCommand()) {
+		if (interaction.isChatInputCommand()) {
 			this.commandHandler.handleCommand(interaction)
 		}
 	}

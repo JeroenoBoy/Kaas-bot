@@ -1,4 +1,4 @@
-import { APIApplicationCommand, CommandInteraction, RESTPostAPIChatInputApplicationCommandsJSONBody, Routes } from 'discord.js'
+import { APIApplicationCommand, ChatInputCommandInteraction, CommandInteraction, RESTPostAPIChatInputApplicationCommandsJSONBody, Routes } from 'discord.js'
 import { Command } from './Command'
 import { Bot } from '../Bot'
 import { commandMatches } from './compareCommands'
@@ -21,7 +21,7 @@ export class CommandHandler {
 		this.commands.push(command)
 	}
 
-	public async handleCommand(interaction: CommandInteraction) {
+	public async handleCommand(interaction: ChatInputCommandInteraction) {
 		const cmd = this.commandMap.get(interaction.commandId)
 		if (cmd == null) {
 			interaction.reply({ ephemeral: true, content: "Command niet gevonden, misschien heeft Gouda kaas 'm gestolen 🧀" })
