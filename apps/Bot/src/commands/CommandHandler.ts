@@ -1,7 +1,7 @@
 import { APIApplicationCommand, ChatInputCommandInteraction, CommandInteraction, RESTPostAPIChatInputApplicationCommandsJSONBody, Routes } from 'discord.js'
-import { Command } from './Command'
-import { Bot } from '../Bot'
-import { commandMatches } from './compareCommands'
+import { Command } from './Command.js'
+import { Bot } from '../Bot.js'
+import { commandMatches } from './compareCommands.js'
 
 export type CommandData = RESTPostAPIChatInputApplicationCommandsJSONBody
 

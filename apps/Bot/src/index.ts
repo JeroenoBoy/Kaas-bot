@@ -1,14 +1,13 @@
-import { loadEnvFile } from 'process';
-import { Bot } from './Bot';
-import { config } from './config';
-import { HelloModule } from './modules/hello';
+import { Bot } from './Bot.js';
+import { config } from './config.js';
+import { HelloModule } from './modules/hello/index.js';
 import { PrismaClient } from '@repo/db';
-import { BirthdayModule } from './modules/birthday';
+import { BirthdayModule } from './modules/birthday/index.js';
 
 async function main() {
 
-	const db = new PrismaClient()
-	await db.$connect()
+	const prisma = new PrismaClient()
+	await prisma.$connect()
 	console.log("Connected to db")
 	
 	const bot = new Bot(config.CLIENT_ID, config.BOT_TOKEN);
@@ -18,7 +17,7 @@ async function main() {
 	}
 
 	bot.addModule(new HelloModule())
-	bot.addModule(new BirthdayModule(db))
+	bot.addModule(new BirthdayModule(prisma))
 	await bot.init()
 	await bot.commandHandler.updateCommands(config.DEV_GUILD)
 

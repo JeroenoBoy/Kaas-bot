@@ -1,5 +1,5 @@
-import { Module } from '../../Module';
-import { HelloCommand } from './commands/helloCommand';
+import { Module } from '../../Module.js';
+import { HelloCommand } from './commands/HelloCommand.js';
 
 export class HelloModule extends Module {
 	public async init() {

@@ -1,6 +1,6 @@
 import { ApplicationCommandData, CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { Command } from '../../../commands/Command';
-import { CommandData } from '../../../commands/CommandHandler';
+import { Command } from '../../../commands/Command.js';
+import { CommandData } from '../../../commands/CommandHandler.js';
 
 export class HelloCommand extends Command {
 	protected commandData(): CommandData {

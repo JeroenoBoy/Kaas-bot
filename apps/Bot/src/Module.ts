@@ -1,5 +1,5 @@
-import { Bot } from './Bot';
-import { Command } from './commands/Command';
+import { Bot } from './Bot.js';
+import { Command } from './commands/Command.js';
 
 export abstract class Module {
 	//@ts-ignore

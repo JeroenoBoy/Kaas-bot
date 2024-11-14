@@ -1,7 +1,6 @@
-import { APIApplication, APIApplicationCommand, ChatInputCommandInteraction, CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { Bot } from '../Bot';
-import { Module } from '../Module';
-import { CommandData } from './CommandHandler';
+import { APIApplicationCommand, ChatInputCommandInteraction } from 'discord.js';
+import { Module } from '../Module.js';
+import { CommandData } from './CommandHandler.js';
 
 export abstract class Command {
 	//@ts-ignore

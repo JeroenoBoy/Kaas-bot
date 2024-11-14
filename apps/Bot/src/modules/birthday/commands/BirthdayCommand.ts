@@ -1,6 +1,6 @@
-import { SlashCommandBuilder, CommandInteraction, SlashCommandSubcommandBuilder, SlashCommandIntegerOption, SlashCommandUserOption, RESTPostAPIChatInputApplicationCommandsJSONBody, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import { Command } from '../../../commands/Command';
-import { PrismaClient } from '@repo/db';
+import { SlashCommandBuilder, CommandInteraction, SlashCommandSubcommandBuilder, SlashCommandIntegerOption, SlashCommandUserOption, RESTPostAPIChatInputApplicationCommandsJSONBody, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js'
+import { Command } from '../../../commands/Command.js'
+import { PrismaClient } from '@repo/db'
 
 export class BirthdayCommand extends Command {
 	private readonly db: PrismaClient;

@@ -5,14 +5,15 @@
     "db:migrate": { "cache": false },
     "db:generate": { "cache": false },
     "db:push": { "cache": false },
+    "start": {
+      "dependsOn": ["^db:push", "^start"]
+    },
     "dev": {
       "dependsOn": ["^db:migrate"],
       "cache": false
     },
     "build": {
-      "dependsOn": ["^db:generate", "^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "dependsOn": ["^db:generate", "^build"]
     },
     "lint": {
       "dependsOn": ["^lint"]

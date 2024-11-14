@@ -1,7 +1,7 @@
 import { PrismaClient } from '@repo/db';
-import { Module } from '../../Module';
-import { BirthdayCommand } from './commands/BirthdayCommand';
-import schedule from "node-schedule"
+import { Module } from '../../Module.js';
+import { BirthdayCommand } from './commands/BirthdayCommand.js';
+import schedule from 'node-schedule'
 import { TextChannel } from 'discord.js';
 
 const day = 1000 * 60 * 60 * 24
