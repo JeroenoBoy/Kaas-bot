@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "turbo start",
+    "migrate": "turbo db:migrate",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",

@@ -5,11 +5,12 @@
     "db:migrate": { "cache": false },
     "db:generate": { "cache": false },
     "db:push": { "cache": false },
-    "start": {
-      "dependsOn": ["^db:push", "^start"]
+    "start": { 
+      "dependsOn": ["^db:push", "^start"],
+      "cache": false
     },
     "dev": {
-      "dependsOn": ["^db:migrate"],
+      "dependsOn": ["^db:migrate", "^dev"],
       "cache": false
     },
     "build": {
