@@ -65,12 +65,12 @@ export class BirthdayCommand extends Command {
 						id: interaction.user.id,
 						date: date
 					}})
-					await interaction.reply({ ephemeral: true, content: "Jouwn kaasdag is gezet naar " + date.toLocaleDateString() })
+					await interaction.reply({ ephemeral: true, content: "Jouwn kaasdag is gezet naar " + this.formatDate(date) })
 				} else {
 					await this.db.birthday.update({ where: { id: interaction.user.id }, data: {
 						date: date
 					}})
-					await interaction.reply({ ephemeral: true, content: "Jouwn kaasdag is veranderd naar " + date.toLocaleDateString() })
+					await interaction.reply({ ephemeral: true, content: "Jouwn kaasdag is veranderd naar " + this.formatDate(date) })
 				}
 
 				break;
@@ -84,17 +84,26 @@ export class BirthdayCommand extends Command {
 					return
 				}
 
-				await interaction.reply({ ephemeral: true, content: "Kaasdag van " + user.toString() + " is `" + birthday.date.toLocaleDateString() + "`"})
+				await interaction.reply({ ephemeral: true, content: "Kaasdag van " + user.toString() + " is `" + this.formatDate(birthday.date) + "`"})
 				break;
 			}
 			case "list": {
 				const birthdays = await this.db.birthday.findMany()
-				await interaction.reply({ephemeral: true, content: "Kaasdagen: 🧀\n"+birthdays.map(it => `- <@${it.id}> is geboren op \`${it.date.toLocaleDateString()}\``).join("\n")})
+				await interaction.reply({ephemeral: true, content: "Kaasdagen: 🧀\n"+birthdays.map(it => `- <@${it.id}> is geboren op \`${this.formatDate(it.date)}\``).join("\n")})
 				break;
 			}
 			default:
 				await interaction.reply({ content: "Dit commando is mij onbekent", ephemeral: true });
 				break;
 		}
+	}
+
+	private formatDate(date: Date) {
+		return date.toLocaleDateString("nl-NL", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric"
+		})
 	}
 }

@@ -7,12 +7,12 @@
     "db:push": { "cache": false, "env": ["DATABASE_URL"] },
     "start": { 
       "dependsOn": ["^start"],
-      "env": ["DATABASE_URL", "BOT_CLIENT_ID", "BOT_TOKEN"],
+      "env": ["DATABASE_URL", "BOT_CLIENT_ID", "BOT_TOKEN", "DEV_GUILD_ID"],
       "cache": false
     },
     "dev": {
       "dependsOn": ["^dev"],
-      "env": ["DATABASE_URL", "BOT_CLIENT_ID", "BOT_TOKEN"],
+      "env": ["DATABASE_URL", "BOT_CLIENT_ID", "BOT_TOKEN", "DEV_GUILD_ID"],
       "cache": false
     },
     "build": {

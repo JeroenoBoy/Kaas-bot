@@ -21,7 +21,7 @@ async function main() {
 	await bot.init()
 	await bot.commandHandler.updateCommands(config.DEV_GUILD)
 
-	bot.client.once("ready", () => console.log("Client is ready"))
+	bot.client.once("ready", () => console.log(`Logged in as ${bot.client.user.tag}. Client is ready 🧀`))
 
 	await bot.start()
 }
